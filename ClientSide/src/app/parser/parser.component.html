@@ -1,0 +1,32 @@
+<div>
+	<select name="" id="" class="form-select form-select-lg mb-3 parserDiv" aria-label=".form-select-lg example"
+		(change)="changeInputType(chooseInputType)" #chooseInputType>
+		<option value="HtmlContent" id="1">HtmlContent</option>
+		<option value="HtmlPageUrl" id="2">HtmlPageUrl</option>
+		<option value="HtmlFile" id="3">HtmlFile</option>
+	</select>
+
+	<input type="text" class="form-control" [(ngModel)]="inputHtmlText" placeholder="Enter you html content"
+		aria-label="Text input with dropdown button" *ngIf="choosenInputIndex == 0; else htmlUrl">
+	<ng-template #htmlUrl>
+		<input type="text" class="form-control" [(ngModel)]="inputHtmlUrl" *ngIf="choosenInputIndex == 1; else htmlfile"
+			aria-label="Text input with dropdown button" placeholder="Enter your Web page Url">
+		<ng-template #htmlfile>
+			<input type="file" class="form-control" (change)="uploadFile($event)" placeholder="upload your html file"
+				aria-label="Text input with dropdown button" *ngIf="choosenInputIndex == 2">
+		</ng-template>
+	</ng-template>
+
+	<!-- perfect -->
+	<br>
+	<br>
+	<button class="btn btn-secondary" (click)="parse(chooseInputType)">Parse Me!!</button>
+	<br>
+	<br>
+	<div class="row">
+		<div class="form-group">
+			<textarea name="" id="" cols="30" rows="10" class="form-control" [value]="textAreaString"
+				placeholder="Expect the desired Output here"></textarea>
+		</div>
+	</div>
+</div>

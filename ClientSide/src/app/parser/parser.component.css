@@ -1,0 +1,12 @@
+#inputTextBox{
+    margin-top:50px;
+}
+
+.textAreaHide{
+    display: none;
+}
+
+.textAreaDisplay{
+    display: block;
+}
+
