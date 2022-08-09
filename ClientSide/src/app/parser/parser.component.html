@@ -9,7 +9,7 @@
 	<input type="text" class="form-control" [(ngModel)]="inputHtmlText" placeholder="Enter you html content"
 		aria-label="Text input with dropdown button" *ngIf="choosenInputIndex == 0; else htmlUrl">
 	<ng-template #htmlUrl>
-		<input type="text" class="form-control" [(ngModel)]="inputHtmlUrl" *ngIf="choosenInputIndex == 1; else htmlfile"
+		<input type="text" class="form-control" [(ngModel)]="inputHtmlText" *ngIf="choosenInputIndex == 1; else htmlfile"
 			aria-label="Text input with dropdown button" placeholder="Enter your Web page Url">
 		<ng-template #htmlfile>
 			<input type="file" class="form-control" (change)="uploadFile($event)" placeholder="upload your html file"
@@ -20,7 +20,7 @@
 	<!-- perfect -->
 	<br>
 	<br>
-	<button class="btn btn-secondary" (click)="parse(chooseInputType)" [disabled]="disableParseButton">Parse Me!!</button>
+	<button class="btn btn-secondary"  (click)="parse(chooseInputType)" [disabled]="(inputHtmlText.length > 0 || inputHtmlFileContent.length > 0) ? false:true">Parse Me!!</button>
 	<br>
 	<br>
 	<div class="row">

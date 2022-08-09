@@ -12,7 +12,6 @@ import { DataSharingService } from '../services/data-sharing.service';
 export class ParseComponent {
 
   inputHtmlText: string = '';
-  inputHtmlUrl: string = '';
   inputHtmlFileContent: string = '';
   textAreaString: string = '';
   choosenInputIndex: number = 0;
@@ -26,6 +25,8 @@ export class ParseComponent {
 
   changeInputType(data: any): void {
     this.choosenInputIndex = data.selectedIndex;
+    this.inputHtmlText = '';
+    this.inputHtmlFileContent = '';
     this.disableParseButton = false;
     this.textAreaString = this.textAreaString.startsWith('The uploaded file') ? '' : this.textAreaString;
   }
@@ -85,7 +86,7 @@ export class ParseComponent {
     try {
       // This function invokes the django rest api to get the response
       // let body = JSON.stringify(this.inputHtmlUrl);
-      let response = this.http.post('http://127.0.0.1:8000/InputHtmlParser/parseUrlInput', this.inputHtmlUrl, { responseType: 'text' });
+      let response = this.http.post('http://127.0.0.1:8000/InputHtmlParser/parseUrlInput', this.inputHtmlText, { responseType: 'text' });
       response.subscribe(res => {
         this.dataShare.updateResponseFromDjango(res);
       });
