@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient, HttpResponse } from '@angular/common/http'
 import { DataSharingService } from '../services/data-sharing.service';
-import { HttpHeaders } from '@angular/common/http';
-
 
 
 
@@ -19,26 +16,30 @@ export class ParseComponent {
   inputHtmlFileContent: string = '';
   textAreaString: string = '';
   choosenInputIndex: number = 0;
-  headers: HttpHeaders = new HttpHeaders();
-  constructor(private navigationRoute: Router, private http: HttpClient, private dataShare: DataSharingService) {
+  disableParseButton:boolean = false;
+  constructor(private http: HttpClient, private dataShare: DataSharingService) {
     this.choosenInputIndex = 0;
     this.dataShare.getResponseFromDjango().subscribe(s => {
       this.textAreaString = s
     });
-    this.headers.append('content-type', 'application/json')
   }
 
   changeInputType(data: any): void {
     this.choosenInputIndex = data.selectedIndex;
+    this.disableParseButton = false;
+    this.textAreaString = this.textAreaString.startsWith('The uploaded file') ? '' : this.textAreaString;
   }
 
   async uploadFile(data: any) {
     const file: File = data.target.files[0];
     if (file.name.endsWith('.html')) {
       this.inputHtmlFileContent = await file.text();
+      this.disableParseButton = false;
+      this.textAreaString = '';
     }
-    else{
+    else {
       this.textAreaString = `The uploaded file ${file.name} does not have proper extension which is .html`;
+      this.disableParseButton = true;
     }
   }
 
