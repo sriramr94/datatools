@@ -1,6 +1,18 @@
-<!-- <a  routerLink="desination-component" routerLinkActive="active">Reach destination!</a> -->
-<div class="container">
-<!-- <app-parser></app-parser> -->
-<app-pdf-to-text-convertor></app-pdf-to-text-convertor>
-<router-outlet></router-outlet>
+<div class="form-group">
+    <div class="row headerDiv">
+        <h3 class="headerTitle">Techie Time Saver Tools</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-2 menu">
+            <ul>
+                <li><a [routerLink]="['/parser']">HTML Parser</a></li>
+                <li><a [routerLink]="['/pdftotext']">PDF To Text</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10 outletClass">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
+
+
