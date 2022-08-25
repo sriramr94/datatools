@@ -5,21 +5,14 @@
     "version": "0.2.0",
     "configurations": [        
         {
-            "name": "Attach to Chrome",
-            "port": 8000,
-            "request": "attach",
-            "type": "chrome",
-            "url": "http://localhost:8000",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
             "name": "Python: Django",
             "type": "python",
-            "request": "launch",
+            "request": "launch", 
             "program": "${workspaceFolder}\\manage.py",
             "args": [
                 "runserver"
             ],
+            "console":"internalConsole",
             "django": true,
             "justMyCode": true
         }

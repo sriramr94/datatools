@@ -8,12 +8,15 @@ import { AppComponent } from './app.component';
 import { DataSharingService } from './services/data-sharing.service';
 import { DestinationComponent } from './destination/destination.component';
 import { ParseComponent } from './parser/parser.component';
+import { PdfToTextConvertorComponent } from './pdf-to-text-convertor/pdf-to-text-convertor.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DestinationComponent,
-    ParseComponent
+    ParseComponent,
+    PdfToTextConvertorComponent
   ],
   imports: [
     BrowserModule,

@@ -18,5 +18,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('InputHtmlParser/',include('InputHtmlParser.urls')),
+     path('PdfToTextConverter/',include('PdfToTextConverter.urls')),
     # path('ResumParser/')
 ]

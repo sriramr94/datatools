@@ -1,0 +1,12 @@
+<div class="form-group mt-3">
+    <div class="mt-3">
+        <input type="file" [placeholder]="fileUploadPlaceHolderText" class="form-control"
+            aria-label="Text input with dropdown button" (change)="uploadFile($event)">
+    </div>
+    <div class="mt-3">
+        <button class="btn btn-secondary form-control" (click)="convertToText()" [disabled]="convertMeButtonDisable">Convert Me to Text!!</button>
+    </div>
+    <div *ngIf="fileDownloadLinkDisplay">
+        <a href= "" #fileDownload (click)="downloadFile($event)">Click to download the file {{fileName}}</a>
+    </div>
+</div>
