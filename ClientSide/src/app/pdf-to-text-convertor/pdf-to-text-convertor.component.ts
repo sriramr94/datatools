@@ -3,6 +3,7 @@ import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { BehaviorSubject, elementAt } from 'rxjs';
+import { WebApiCallService } from '../services/web-api-call.service';
 
 @Component({
   selector: 'app-pdf-to-text-convertor',
@@ -18,7 +19,7 @@ export class PdfToTextConvertorComponent implements OnInit {
   fileResponse: Blob = null!;
   fileUploadPlaceHolderText:string = 'Upload a proper PDF file';
   convertMeButtonDisable:boolean=true;
-  constructor(private http: HttpClient, private el: ElementRef) { }
+  constructor(private webApi: WebApiCallService, private el: ElementRef) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +40,7 @@ export class PdfToTextConvertorComponent implements OnInit {
   convertToText() {
     const formData = new FormData();
     formData.append('file', this.file, this.file.name);
-    this.http.post('http://localhost:8000/PdfToTextConverter/pdfToText', formData, { observe: 'response', responseType: 'blob' }).subscribe(response => {
+    this.webApi.convertPdfToText(formData).subscribe(response => {
       this.fileDownloadLinkDisplay = response != null || undefined ? true : this.fileDownloadLinkDisplay;
       this.fileName = (response.headers.get('content-disposition')?.split(';')[1].split('=')[1])!;
       this.fileResponse = response.body as Blob;

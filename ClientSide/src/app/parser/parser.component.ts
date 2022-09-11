@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http'
 import { DataSharingService } from '../services/data-sharing.service';
+import { WebApiCallService } from '../services/web-api-call.service';
 
 
 
@@ -15,8 +16,8 @@ export class ParseComponent {
   inputHtmlFileContent: string = '';
   textAreaString: string = '';
   choosenInputIndex: number = 0;
-  disableParseButton:boolean = false;
-  constructor(private http: HttpClient, private dataShare: DataSharingService) {
+  disableParseButton: boolean = false;
+  constructor(private webApi: WebApiCallService, private dataShare: DataSharingService) {
     this.choosenInputIndex = 0;
     this.dataShare.getResponseFromDjango().subscribe(s => {
       this.textAreaString = s
@@ -58,8 +59,7 @@ export class ParseComponent {
 
   parseHtml() {
     try {
-      let response = this.http.post('http://localhost:8000/InputHtmlParser/parseHtml', this.inputHtmlText, { responseType: 'text' });
-      response.subscribe(res => {
+      this.webApi.parseHtml(this.inputHtmlText).subscribe(res => {
         this.dataShare.updateResponseFromDjango(res);
       });
     }
@@ -71,9 +71,7 @@ export class ParseComponent {
   parseHtmlFile() {
     try {
       // This function invokes the django rest api to get the response
-      debugger;
-      let response = this.http.post('http://localhost:8000/InputHtmlParser/ParseHtmlFile', this.inputHtmlFileContent, { responseType: 'text' });
-      response.subscribe(res => {
+      this.webApi.parseHtmlFile(this.inputHtmlFileContent).subscribe(res => {
         this.dataShare.updateResponseFromDjango(res);
       });
     }
@@ -84,10 +82,7 @@ export class ParseComponent {
 
   parseHtmlUrl() {
     try {
-      // This function invokes the django rest api to get the response
-      // let body = JSON.stringify(this.inputHtmlUrl);
-      let response = this.http.post('http://127.0.0.1:8000/InputHtmlParser/parseUrlInput', this.inputHtmlText, { responseType: 'text' });
-      response.subscribe(res => {
+      this.webApi.parseHtmlUrl(this.inputHtmlText).subscribe(res => {
         this.dataShare.updateResponseFromDjango(res);
       });
     }

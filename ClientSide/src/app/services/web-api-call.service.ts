@@ -7,16 +7,28 @@ import { DataSharingService } from './data-sharing.service';
   providedIn: 'root'
 })
 export class WebApiCallService {
-  domainUrl: string = '';
+  domainUrl: string = 'http://localhost:8000/';
   uri: string = '';
 
   constructor(private httpClient: HttpClient, private dataShare: DataSharingService) {
   }
 
-  post(data: any = null) {
-    let response = this.httpClient.post(`${this.domainUrl + this.uri}`, data, { responseType: 'text' });
-    response.subscribe(res => {
-      this.dataShare.updateResponseFromDjango(res);
-    });
+  convertPdfToText(formData: FormData) {
+    return this.httpClient.post(this.domainUrl + 'PdfToTextConverter/pdfToText', formData, { observe: 'response', responseType: 'blob' });
   }
+
+  parseHtml(inputText: string) {
+    return this.httpClient.post(this.domainUrl + 'InputHtmlParser/parseHtml', inputText, { responseType: 'text' });
+  }
+  
+  parseHtmlFile(fileContent: string)
+  {
+    return this.httpClient.post(this.domainUrl + 'InputHtmlParser/ParseHtmlFile',fileContent, { responseType: 'text'});
+  }
+
+  parseHtmlUrl(htmlContent: string)
+  {
+    return this.httpClient.post(this.domainUrl + 'InputHtmlParser/parseUrlInput',htmlContent,{responseType : 'text'});
+  }
+
 }
