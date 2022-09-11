@@ -20,5 +20,5 @@ fname = 'samplePdf1.pdf'
 pdfobj = get_file(fname)
 pdfread = read_pdf(pdfobj)
 download_file = convert_to_text(pdfread)
-print(download_file)
+print(download_file,'hello')
 
