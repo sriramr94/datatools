@@ -19,5 +19,7 @@ from django.urls import path,include
 urlpatterns = [
     path('InputHtmlParser/',include('InputHtmlParser.urls')),
      path('PdfToTextConverter/',include('PdfToTextConverter.urls')),
+     path('SearchMatchingWords/',include('SearchMatchingWords.urls')),
+     path('SearchRelatedArticles/',include('SearchRelatedArticles.urls'))
     # path('ResumParser/')
 ]
