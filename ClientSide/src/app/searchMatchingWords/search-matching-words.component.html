@@ -1,0 +1,27 @@
+<div class="row">
+   <input type="text" placeholder="Enter the search key" class="form-control" [(ngModel)]="inputSearchKey">
+</div>
+<br>
+<div class="row">
+   <button class="btn btn-secondary" (click)="getMatchingWordsByKey()"
+      [disabled]="inputSearchKey.length > 0 ? false : true">Matches</button>
+</div>
+<br>
+<br>
+<div class="form-check form-check-inline">
+   <input class="form-check-input" type="checkbox" id="hashtag" value="hashtag" [(ngModel)]="hashTagchecked"
+      (click)="toggleCheckBox($event)">
+   <label class="form-check-label" for="hashtag">Hashtag</label>
+</div>
+<div class="form-check form-check-inline">
+   <input class="form-check-input" type="checkbox" id="underscore" value="underscore" [(ngModel)]="underScoreChecked"
+      (click)="toggleCheckBox($event)">
+   <label class="form-check-label" for="underscore">Underscore</label>
+</div>
+
+<div class="row">
+   <div class="chip" *ngFor="let word of matchingWords">
+      {{word}}
+   </div>
+
+</div>

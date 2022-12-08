@@ -9,6 +9,8 @@ import { DataSharingService } from './services/data-sharing.service';
 import { DestinationComponent } from './destination/destination.component';
 import { ParseComponent } from './parser/parser.component';
 import { PdfToTextConvertorComponent } from './pdf-to-text-convertor/pdf-to-text-convertor.component';
+import { SearchMatchingWordsComponent } from './searchMatchingWords/search-matching-words.component';
+import { SearchRelatedArticleComponent } from './SearchRelatedArticle/search-related-article.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { PdfToTextConvertorComponent } from './pdf-to-text-convertor/pdf-to-text
     AppComponent,
     DestinationComponent,
     ParseComponent,
-    PdfToTextConvertorComponent
+    PdfToTextConvertorComponent,
+    SearchMatchingWordsComponent,
+    SearchRelatedArticleComponent
   ],
   imports: [
     BrowserModule,

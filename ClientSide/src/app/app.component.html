@@ -1,18 +1,20 @@
-<div class="form-group">
-    <div class="row headerDiv">
-        <h3 class="headerTitle">Techie Time Saver Tools</h3>
-    </div>
-    <div class="row">
-        <div class="col-md-2 menu">
-            <ul>
-                <li><a [routerLink]="['/parser']">HTML Parser</a></li>
-                <li><a [routerLink]="['/pdftotext']">PDF To Text</a></li>
-            </ul>
+<div class="container">
+    <div class="form-group">
+        <div class="row headerDiv">
+            <h3 class="headerTitle">Techie Time Saver Tools</h3>
         </div>
-        <div class="col-md-10 outletClass">
-            <router-outlet></router-outlet>
+        <div class="row">
+            <div class="col-md-2 menu">
+                <ul>
+                    <li><a [routerLink]="['/parser']">HTML Parser</a></li>
+                    <li><a [routerLink]="['/pdftotext']">PDF To Text</a></li>
+                    <li><a [routerLink]="['/searchMatchingWords']">Search Matching Words</a></li>
+                    <li><a [routerLink]="['/SearchRelatedArticle']">Search Related Article</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10 outletClass">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </div>
-
-

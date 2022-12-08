@@ -1,0 +1,21 @@
+<div class="col-lg-12">
+    <div class="input-group my-group">
+        <div class="col-lg-11">
+            <input type="text" class="form-control" placeholder="Please enter the search key" [(ngModel)]="inputText" />
+        </div>
+        <div class="col-lg-1">
+            <input type="number" class="form-control" min="0" [(ngModel)]="articleCount" /> &nbsp;
+        </div>
+        <span class="input-group-btn">
+            <button class="btn btn-secondary my-group-button" type="submit" (click)="searchArticle()"
+                [disabled]="inputText.length > 0 ? false: true">Article Search!!</button>
+        </span>
+    </div>
+</div>
+<br>
+<div>
+    <div *ngFor="let url of urls">
+        <a [href]="url.url" >{{url.heading}}</a>
+    </div>
+
+</div>

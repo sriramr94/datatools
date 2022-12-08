@@ -31,4 +31,13 @@ export class WebApiCallService {
     return this.httpClient.post(this.domainUrl + 'InputHtmlParser/parseUrlInput',htmlContent,{responseType : 'text'});
   }
 
+  getMatchingWordsByKey(key: string)
+  {
+    return this.httpClient.post(this.domainUrl + 'SearchMatchingWords/getMatchingWordsByKey', key, { responseType: 'text' });
+  }
+  
+  getRelatedArticlesWithRequestedCount(key: string, count: number)
+  {
+    return this.httpClient.post(this.domainUrl + 'SearchRelatedArticles/getRelatedArticlesByCount',{input : key, articleCount : count} , {responseType: 'text'});
+  }
 }
